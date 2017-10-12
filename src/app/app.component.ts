@@ -1,4 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
+import { NgModule } from '@angular/core';
+import { IonicModule } from 'ionic-angular';
 
 import { Events, MenuController, Nav, Platform } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -15,6 +17,9 @@ import { TutorialPage } from '../pages/tutorial/tutorial';
 import { SchedulePage } from '../pages/schedule/schedule';
 import { SpeakerListPage } from '../pages/speaker-list/speaker-list';
 import { SupportPage } from '../pages/support/support';
+import { ItemsListComponent } from '../pages/items/items-list/items-list.component'  ;
+import { ConsentListPage } from '../pages/consents/consent-list/consent-list'  ;
+
 
 import { ConferenceData } from '../providers/conference-data';
 import { UserData } from '../providers/user-data';
@@ -31,8 +36,12 @@ export interface PageInterface {
 }
 
 @Component({
-  templateUrl: 'app.template.html'
+  templateUrl: 'app.template.html',
+  
 })
+
+
+
 export class ConferenceApp {
   // the root nav is a child of the root app component
   // @ViewChild(Nav) gets a reference to the app's root nav
@@ -45,11 +54,15 @@ export class ConferenceApp {
     { title: 'Schedule', name: 'TabsPage', component: TabsPage, tabComponent: SchedulePage, index: 0, icon: 'calendar' },
     { title: 'Speakers', name: 'TabsPage', component: TabsPage, tabComponent: SpeakerListPage, index: 1, icon: 'contacts' },
     { title: 'Map', name: 'TabsPage', component: TabsPage, tabComponent: MapPage, index: 2, icon: 'map' },
-    { title: 'About', name: 'TabsPage', component: TabsPage, tabComponent: AboutPage, index: 3, icon: 'information-circle' }
+	    
+    { title: 'About', name: 'TabsPage', component: TabsPage, tabComponent: AboutPage, index: 3, icon: 'information-circle' },
+	{ title: 'Consents', name: 'ConsentListPage', component: TabsPage, tabComponent: ConsentListPage, index: 4, icon: 'information-circle' },
+		{ title: 'Items', name: 'ItemsPage', component: TabsPage, tabComponent: ItemsListComponent, index: 5, icon: 'information-circle' }
   ];
   loggedInPages: PageInterface[] = [
     { title: 'Account', name: 'AccountPage', component: AccountPage, icon: 'person' },
     { title: 'Support', name: 'SupportPage', component: SupportPage, icon: 'help' },
+
     { title: 'Logout', name: 'TabsPage', component: TabsPage, icon: 'log-out', logsOut: true }
   ];
   loggedOutPages: PageInterface[] = [

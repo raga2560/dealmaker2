@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { NgModule, ErrorHandler } from '@angular/core';
 
-import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { IonicApp, IonicModule,IonicPageModule , IonicErrorHandler } from 'ionic-angular';
 
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -26,7 +26,22 @@ import { TabsPage } from '../pages/tabs-page/tabs-page';
 import { TutorialPage } from '../pages/tutorial/tutorial';
 import { SupportPage } from '../pages/support/support';
 
+import { environment } from '../environments/environment';
+import { AngularFireModule } from 'angularfire2';
+export const firebaseConfig = environment.firebaseConfig;
+
+// Core
+import { CoreModule } from '../pages/core/core.module';
+
+// Shared/Widget
+import { SharedModule } from '../pages/shared/shared.module'
+
+import { ItemModule } from '../pages/items/shared/item.module';
+import { ConsentModule } from '../pages/consents/shared/consent.module';
+
+
 import { ConferenceData } from '../providers/conference-data';
+import { ItemsListComponent } from '../pages/items/items-list/items-list.component'  ;
 import { UserData } from '../providers/user-data';
 
 
@@ -46,11 +61,19 @@ import { UserData } from '../providers/user-data';
     SpeakerListPage,
     TabsPage,
     TutorialPage,
-    SupportPage
+//	ItemsListComponent,
+	   SupportPage
+	
   ],
   imports: [
     BrowserModule,
     HttpModule,
+	ItemModule,
+	ConsentModule,
+	CoreModule,
+	SharedModule,
+//	IonicPageModule.forChild(ItemsListComponent),
+	AngularFireModule.initializeApp(firebaseConfig),
     IonicModule.forRoot(ConferenceApp, {}, {
       links: [
         { component: TabsPage, name: 'TabsPage', segment: 'tabs-page' },
@@ -63,12 +86,15 @@ import { UserData } from '../providers/user-data';
         { component: AboutPage, name: 'About', segment: 'about' },
         { component: TutorialPage, name: 'Tutorial', segment: 'tutorial' },
         { component: SupportPage, name: 'SupportPage', segment: 'support' },
+//		{ component: ItemsListComponent, name: 'ItemsListComponent', segment: 'items' },
+		
         { component: LoginPage, name: 'LoginPage', segment: 'login' },
         { component: AccountPage, name: 'AccountPage', segment: 'account' },
         { component: SignupPage, name: 'SignupPage', segment: 'signup' }
       ]
     }),
-    IonicStorageModule.forRoot()
+	IonicStorageModule.forRoot()
+    
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -86,8 +112,9 @@ import { UserData } from '../providers/user-data';
     SpeakerListPage,
     TabsPage,
     TutorialPage,
+//	ItemsListComponent,
     SupportPage
-  ],
+	  ],
   providers: [
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     ConferenceData,

@@ -95,3 +95,25 @@ $toolbar-md-active-color:                 #fff;
 
 @import "roboto";
 @import "noto-sans";
+
+//$split-pane-side-max-width: 80%;
+
+//$grid-max-widths: (
+//  sm: 420px,
+//  md: 720px,
+// lg: 860px,
+//  xl: 960px
+//);
+
+//$grid-padding-width:         100px !default;
+
+@media(min-width:450px) {
+    .container {
+       margin: auto;
+			width: 80%;
+			border: 3px solid green;
+			padding: 10px;
+	
+	
+    }
+}
